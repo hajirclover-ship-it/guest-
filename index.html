@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بلیط من</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap');
+
+    body {
+      background-color: #1e73be;
+      font-family: 'Vazirmatn', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .app-container {
+      width: 380px;
+      background-color: #1e73be;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .app-header {
+      background-color: #071927;
+      color: white;
+      padding: 18px 20px;
+      text-align: center;
+      position: relative;
+      margin: 8px 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      width: 32px;
+      height: 32px;
+      border: 3px solid white;
+      border-radius: 50%;
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+      line-height: 32px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .ticket {
+      background-color: #fff;
+      border-radius: 2px;
+      margin: 0 10px 20px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .header {
+      background-color: #1e73be;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 0 15px 15px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 88%;
+      margin: 17px auto 0;
+      transform: translateX(-10px);
+      color: #fff;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+    
+    .header .name-icon {
+      width: 20px; 
+      height: 20px;
+      margin-left: 5px; 
+      vertical-align: middle;
+      filter: invert(1);
+    }
+
+    .qr {
+      padding: 20px;
+    }
+
+    .qr img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 10px 20px;
+    }
+
+    .info h3 {
+      margin: 0;
+      color: #222;
+      font-size: 1.8rem;
+      line-height: 1.4;
+    }
+
+    .info h3 .line1,
+    .info h3 .line2 {
+      display: block;
+    }
+
+    .info p {
+      margin: 8px 0;
+      color: #555;
+      font-size: 1rem;
+    }
+
+  
+    .gyro-section {
+  
+      transition: transform 0.15s ease-out;
+    }
+
+    
+    .timer-section {
+      background-color: #EB2E82;
+      position: relative;j
+      overflow: hidden;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000000;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .bubble-mask {
+      position: relative;
+      width: 45%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100%); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120%); opacity: 0; }
+    }
+
+    .expires {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      font-size: 0.8rem;
+      color: #333;
+    }
+
+    .code {
+      background-color: #f3f3f3;
+      margin: 0 20px 15px;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .footer a {
+      display: inline-block;
+      /* ✅ تغییر رنگ از آبی (#1a73e8) به سبز تیره (#008000) */
+      color: #008000; 
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="app-header">
+      Your Ticket
+      <div class="close-btn">&times;</div>
+    </div>
+
+    <div class="ticket">
+      <div class="header">
+        <div class="name">
+          <img src="https://img.icons8.com/?size=100&id=TTEIPFygMuEZ&format=png&color=000000" alt="New Icon" class="name-icon">
+             hajir javadian
+        </div>
+        <div class="price">£104.60</div>
+      </div>
+
+      <div class="qr">
+        <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=Name%3A%20Ali%20Rezaei%0AEmail%3A%20ali.rezaei%40example.com%0APhone%3A%20%2B989121234567%0AWebsite%3A%20https%3A%2F%2Falirezaei.dev%0AAddress%3A%20Tehran%2C%20Iran%0ACompany%3A%20Rezaei%20Tech%20Solutions%0ARole%3A%20Senior%20Full%20Stack%20Developer%0ALinkedIn%3A%20https%3A%2F%2Flinkedin.com%2Fin%2Falirezaei%0AGitHub%3A%2F%2Fgithub.com%2Falirezaei%0ATelegram%3A%20https%3A%2F%2Ft.me%2Falirezaei%0ASkills%3A%20JavaScript%2C%20TypeScript%2C%20React%2C%20Node.js%2C%20Python%2C%20Django%2C%20SQL%2C%20Docker%0AProjects%3A%20AI%20Chatbot%2C%20E-commerce%20Platform%2C%20Portfolio%20App%0AAwards%3A%20Top%20Developer%202024%20%26%20Hackathon%20Winner%0AAbout%3A%20Passionate%20developer%20with%20over%207%20years%20of%20experience%20in%20building%20scalable%20applications%2C%20mentoring%20teams%2C%20and%20exploring%20AI%20technologies."
+    alt="QR"
+  >
+      </div>
+
+      <div class="info">
+        <h3>
+          <span class="line1">East Scotland 28</span>
+          <span class="line2">Day MegaRider</span>
+        </h3>
+        <p>Valid from: 00:00, 20 Dec 2025</p>
+      </div>
+
+      <div class="gyro-section" id="gyro-section">
+        <div class="timer-section" id="timer-section">
+          <div class="bubble-mask" id="bubble-mask">
+            <div id="timer">--:--</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="expires">
+        Ticket expires in
+        <span id="countdown">Loading...</span>
+      </div>
+
+      <div class="code">9672-20251003101631920-vSHn7</div>
+
+      <div class="footer">
+        <a href="#">More details ></a>
+      </div>
+    </div>
+  </div>
+
+ <script>
+  const timerElement = document.getElementById("timer");
+  const bubbleMask = document.getElementById("bubble-mask");
+  const gyroSection = document.getElementById("gyro-section");
+
+  let showClock = true;
+  function toggleDisplay() {
+    if (showClock) {
+      const now = new Date();
+      timerElement.textContent = now.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } else {
+      timerElement.textContent = "Clock";
+    }
+    showClock = !showClock;
+  }
+  setInterval(toggleDisplay, 1500);
+  toggleDisplay();
+
+  
+  function createBubble() {
+    const bubble = document.createElement("div");
+    const size = Math.random() * 25 + 10;
+    bubble.classList.add("bubble");
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * 100}%`;
+    bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+    bubbleMask.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 7000);
+  }
+  setInterval(createBubble, 800);
+
+  
+  const expireTime = new Date();
+  expireTime.setDate(expireTime.getDate() + 6);
+  expireTime.setHours(expireTime.getHours() + 8);
+  expireTime.setMinutes(expireTime.getMinutes() + 19);
+  expireTime.setSeconds(expireTime.getSeconds() + 9);
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = expireTime - now;
+    const countdown = document.getElementById("countdown");
+    if (diff <= 0) {
+      countdown.textContent = "Expired";
+      return;
+    }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  
+  function handleOrientation(event) {
+   
+    const gamma = event.gamma || 0; 
+    
+   
+    const rotationAmount = Math.max(-20, Math.min(20, gamma)); 
+    
+    
+    gyroSection.style.transform = `rotateZ(${rotationAmount}deg)`;
+  }
+
+  
+  async function initOrientation() {
+    try {
+      if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        const response = await DeviceOrientationEvent.requestPermission();
+        if (response === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+          console.log("✅ دسترسی به ژیروسکوپ فعال شد");
+        } else {
+          showPermissionButton();
+        }
+      } else {
+       
+        window.addEventListener("deviceorientation", handleOrientation);
+        console.log("✅ ژیروسکوپ فعال است");
+      }
+    } catch (err) {
+      console.error("❌ خطا در دسترسی به ژیروسکوپ:", err);
+      showPermissionButton();
+    }
+  }
+
+  
+  function showPermissionButton() {
+    const btn = document.createElement("button");
+    btn.textContent = "فعال‌سازی چرخش گوشی";
+    btn.style.position = "fixed";
+    btn.style.bottom = "20px";
+    btn.style.left = "50%";
+    btn.style.transform = "translateX(-50%)";
+    btn.style.padding = "12px 20px";
+    btn.style.fontSize = "1rem";
+    btn.style.borderRadius = "10px";
+    btn.style.background = "#1e73be";
+    btn.style.color = "#fff";
+    btn.style.border = "none";
+    btn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+    btn.style.zIndex = "9999";
+    btn.onclick = async () => {
+      try {
+        const response = await DeviceOrientationEvent.requestPermission();
+        if (response === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+          btn.remove();
+        } else {
+          alert("بدون اجازه، چرخش فعال نمی‌شود.");
+        }
+      } catch {
+        alert("دسترسی به سنسور ممکن نیست.");
+      }
+    };
+    document.body.appendChild(btn);
+  }
+
+
+  window.addEventListener("load", initOrientation);
+</script>
+  <script>
+  const correctPassword = "Lucy2020"; // ← رمز دلخواهت
+  const entered = prompt("لطفاً رمز ورود را وارد کنید:");
+  if (entered !== correctPassword) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
+  }
+</script>
+<script>
+  const correctPassword = "hajir123"; // ← رمز دلخواهت
+  const entered = prompt("لطفاً رمز ورود را وارد کنید:");
+  if (entered !== correctPassword) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
+  }
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
